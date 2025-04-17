@@ -1,6 +1,6 @@
 This is a function that calculates the Gini coefficient of a numpy array. Gini coefficients are often used to quantify income inequality, read more [here](http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm). The function in `gini.py` is based on the third equation from [here](http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm), which defines the Gini coefficient as:
 
-$$G = frac{ um\_{i=1}^{n} (2i - n - 1) x_i}{n um\_{i=1}^{n} x_i}$$
+$$ G = {\\frac{ \\sum\_{i=1}^{n} (2i - n - 1) x_i}{n \\sum\_{i=1}^{n} x_i}} $$
 
 ## Examples
 
