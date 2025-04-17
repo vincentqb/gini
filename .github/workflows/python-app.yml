@@ -1,10 +1,10 @@
-name: test and publish
+name: test
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
   release:
     types: [published]
 
