@@ -2,7 +2,7 @@ import random
 
 import numpy as np
 
-from gini import gini
+from gini import gini, vectorized_gini
 
 
 def test_example_1():
@@ -11,6 +11,7 @@ def test_example_1():
     array[0] = 1.0
     score = 0.99890010998900103
     assert abs(gini(array) - score) < 0.01
+    assert np.abs(vectorized_gini(array) - score).item() < 0.01
 
 
 def test_example_2():
@@ -18,6 +19,7 @@ def test_example_2():
     array = np.random.uniform(-1, 0, 1000)
     score = 0.3295183767105907
     assert abs(gini(array) - score) < 0.01
+    assert np.abs(vectorized_gini(array) - score).item() < 0.01
 
 
 def test_example_3():
@@ -25,6 +27,7 @@ def test_example_3():
     array = np.ones((1000))
     score = 0.0
     assert abs(gini(array) - score) < 0.01
+    assert np.abs(vectorized_gini(array) - score).item() < 0.01
 
 
 def test_int():
@@ -33,11 +36,12 @@ def test_int():
     array = np.array(array)
 
     assert abs(gini(array) - score) < 0.01
+    assert np.abs(vectorized_gini(array) - score).item() < 0.01
 
-    # Make some values negative
     array -= 1_000
 
     assert abs(gini(array) - score) < 0.01
+    assert np.abs(vectorized_gini(array) - score).item() < 0.01
 
 
 def test_random_and_large():
@@ -45,6 +49,7 @@ def test_random_and_large():
     array = np.array(array)
 
     assert gini(array) > 0.98
+    assert vectorized_gini(array).item() > 0.98
 
 
 def test_random_vector():
@@ -53,3 +58,11 @@ def test_random_vector():
     array = np.array(array)
 
     assert 0 < gini(array) < 1
+
+    out = vectorized_gini(array, axis=0)
+    assert out.shape[0] == shape[1]
+    assert (0 <= out).all() and (out <= 1).all()
+
+    out = vectorized_gini(array)
+    assert out.shape[0] == shape[0]
+    assert (0 <= out).all() and (out <= 1).all()

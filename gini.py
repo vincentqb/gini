@@ -22,3 +22,27 @@ def gini(array):
     n = array.shape[0]
     # Gini coefficient:
     return (np.sum((2 * index - n - 1) * array)) / (n * np.sum(array))
+
+
+def vectorized_gini(array, axis=-1):
+    """Calculate the Gini coefficient of a numpy array."""
+    # based on bottom eq:
+    # http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
+    # from:
+    # http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm
+
+    if np.amin(array) < 0:
+        # Values cannot be negative:
+        array -= np.amin(array)
+    # Values cannot be 0:
+    array = array + 0.0000001
+    # Values must be sorted:
+    array = np.sort(array, axis=axis)
+    # Index per array element:
+    shape = [1 for _ in array.shape]
+    shape[axis] = -1
+    index = np.arange(1, array.shape[axis] + 1).reshape(shape)
+    # Number of array elements:
+    n = array.shape[axis]
+    # Gini coefficient:
+    return (np.sum((2 * index - n - 1) * array, axis=axis)) / (n * np.sum(array, axis=axis))
