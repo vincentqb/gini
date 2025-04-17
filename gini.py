@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def gini(array):
     """Calculate the Gini coefficient of a numpy array."""
     # based on bottom eq:
@@ -16,8 +17,8 @@ def gini(array):
     # Values must be sorted:
     array = np.sort(array)
     # Index per array element:
-    index = np.arange(1,array.shape[0]+1)
+    index = np.arange(1, array.shape[0] + 1)
     # Number of array elements:
     n = array.shape[0]
     # Gini coefficient:
-    return ((np.sum((2 * index - n  - 1) * array)) / (n * np.sum(array)))
+    return (np.sum((2 * index - n - 1) * array)) / (n * np.sum(array))
