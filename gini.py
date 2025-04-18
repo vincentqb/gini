@@ -2,11 +2,13 @@ import numpy as np
 
 
 def gini(array, axis=-1):
-    """Calculate the Gini coefficient of a numpy array."""
-    # based on bottom eq:
-    # http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
-    # from:
-    # http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm
+    """
+    Calculate the Gini coefficient of a numpy array.
+
+    forked from: https://github.com/oliviaguest/gini
+    based on bottom eq: http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
+    from: http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm
+    """
 
     # Values must be strictly positive
     array = array - np.amin(array) + 0.0000001
@@ -21,5 +23,6 @@ def gini(array, axis=-1):
 
     # Number of array elements
     n = array.shape[axis]
+
     # Gini coefficient
     return (np.sum((2 * index - n - 1) * array, axis=axis)) / (n * np.sum(array, axis=axis))
