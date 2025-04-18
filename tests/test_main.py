@@ -16,13 +16,8 @@ def test_example_1():
 def test_example_2():
     # For uniformly distributed random numbers, it will be low, around 0.33:
     array = np.random.uniform(-1, 0, 1000)
-    array_ = array[:]
-
     out = gini(array)
     assert (0 <= out).all() and (out <= 0.5).all()
-
-    # Check array was not changed in place
-    assert (array == array_).all()
 
 
 def test_example_3():
@@ -30,6 +25,13 @@ def test_example_3():
     array = np.ones((1000))
     score = 0.0
     assert np.abs(gini(array) - score).item() < 0.01
+
+
+def test_original_array_not_modified():
+    array = np.random.uniform(-1, 0, 1000)
+    array_ = array[:]
+    gini(array)
+    assert (array == array_).all()
 
 
 def test_int():
@@ -47,7 +49,6 @@ def test_int():
 def test_random_and_large():
     array = [random.randint(0, 10) for _ in range(100)] + [100_000_000]
     array = np.array(array)
-
     assert gini(array).item() > 0.98
 
 
