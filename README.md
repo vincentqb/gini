@@ -5,27 +5,29 @@ $$ G = {\\frac{ \\sum\_{i=1}^{n} (2i - n - 1) x_i}{n \\sum\_{i=1}^{n} x_i}} $$
 For a very unequal sample, 999 zeros and a single one, the Gini coefficient is very close to 1.0:
 
 ```
->>> from gini import *
->>> a = np.zeros((1000))
->>> a[0] = 1.0
->>> gini(a)
-0.99890010998900103
+>>> import numpy as np
+>>> from gini import gini
+
+>>> array = np.zeros((1000))
+>>> array[0] = 1.0
+>>> gini(array)
+np.float64(0.998900109989001)
 ```
 
 For uniformly distributed random numbers, it will be low, around 0.33:
 
 ```
->>> s = np.random.uniform(-1,0,1000)
->>> gini(s)
-0.3295183767105907
+>>> array = np.random.uniform(-1,0,1000)
+>>> gini(array)
+np.float64(0.33020664112202275)
 ```
 
 For a homogeneous sample, the Gini coefficient is 0.0:
 
 ```
->>> b = np.ones((1000))
->>> gini(b)
-0.0
+>>> array = np.ones((1000))
+>>> gini(array)
+np.float64(-6.938893903907231e-17)
 ```
 
 Gini coefficients are often used to quantify income inequality, read more [here](http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm).
