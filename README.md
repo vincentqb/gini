@@ -1,20 +1,15 @@
-This is a function that calculates the Gini coefficient of a numpy array. Gini coefficients are often used to quantify income inequality, read more [here](http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm). The function in `gini.py` is based on the third equation from [here](http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm), which defines the Gini coefficient as:
+This is a function that calculates the Gini coefficient of a numpy array along a given axis. Gini coefficients are often used to quantify income inequality, read more [here](http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm). The function in `gini.py` is based on the third equation from [here](http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm), which defines the Gini coefficient as:
 
 $$ G = {\\frac{ \\sum\_{i=1}^{n} (2i - n - 1) x_i}{n \\sum\_{i=1}^{n} x_i}} $$
 
 ## Examples
 
-For a very unequal sample, 999 zeros and a single one,
+For a very unequal sample, 999 zeros and a single one, the Gini coefficient is very close to 1.0:
 
 ```
 >>> from gini import *
 >>> a = np.zeros((1000))
 >>> a[0] = 1.0
-```
-
-the Gini coefficient is very close to 1.0:
-
-```
 >>> gini(a)
 0.99890010998900103
 ```
