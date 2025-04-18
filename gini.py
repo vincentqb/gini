@@ -11,7 +11,7 @@ def gini(array, axis=-1):
     """
 
     # Values must be strictly positive
-    array = array - np.amin(array) + 0.0000001
+    array = array - np.amin(array) + 1e-7
 
     # Values must be sorted
     array = np.sort(array, axis=axis)
