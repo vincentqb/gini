@@ -3,10 +3,10 @@ import numpy as np
 
 def gini(array, axis=-1):
     """
-    Calculate the Gini coefficient of a numpy array.
+    Calculate the Gini coefficient of a numpy array along an axis.
 
-    forked from: https://github.com/oliviaguest/gini
-    based on bottom eq: http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
+    vectorized implementation based on: https://github.com/oliviaguest/gini
+    based on bottom equation: http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
     from: http://www.statsdirect.com/help/default.htm#nonparametric_methods/gini.htm
     """
 
