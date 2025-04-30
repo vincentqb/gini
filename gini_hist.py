@@ -11,7 +11,7 @@ class GiniHistogramApproximator:
     def update(self, values):
         values = np.asarray(values)
         if any(values < 0):
-            print("Cannot process negative values")
+            print("Warning: Cannot process negative values. Skipping.")
             return
         self.bin_counts += np.histogram(values, bins=self.bin_edges)[0]
         self.total_sum += np.sum(values)
