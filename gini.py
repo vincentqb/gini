@@ -28,7 +28,7 @@ def gini_numpy(array, axis=-1):
 
 def gini_torch(array, axis=-1):
     """
-    Calculate the Gini coefficient of a numpy array along an axis.
+    Calculate the Gini coefficient of a torch tensor along an axis.
 
     vectorized implementation based on: https://github.com/oliviaguest/gini
     based on bottom equation: http://www.statsdirect.com/help/generatedimages/equations/equation154.svg
