@@ -33,7 +33,7 @@ source = ["."]
 only-include = ["gini.py"]
 
 [tool.pytype]
-inputs = ['gini.py']
+inputs = ["gini.py"]
 
 [tool.ruff]
 line-length = 120
